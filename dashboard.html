@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - GameXP</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">GameXP 🎯</div>
+    <ul>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="rewards.html">Rewards</a></li>
+      <li><a href="my-rewards.html">My Rewards</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+    </ul>
+    <div class="account">👤 <span id="username">Player</span></div>
+  </nav>
+  
+  <div class="container">
+    <div class="dashboard">
+      <h1>Welcome to Your Loyalty Dashboard</h1>
+      
+      <div class="level-box">
+        <h3>🏅 Level <span id="currentLevel">7</span></h3>
+        <p><span id="currentXP">4,000</span> / <span id="nextLevelXP">5,000</span> XP</p>
+        <div class="level-bar">
+          <div id="levelProgress" class="level-fill" style="width: 80%;"></div>
+        </div>
+        <p style="margin-top: 0.5rem;"><span id="percentComplete">80</span>% Complete — <strong><span id="xpToNextLevel">1000</span> XP to Level <span id="nextLevel">8</span></strong></p>
+      </div>
+
+      <div class="charts">
+        <div class="chart-box">
+          <div class="title">📊 Points Overview</div>
+          <p>
+            <strong style="color:#3813c2;">Current Points: <span id="totalPoints">8,250</span></strong><br>
+            Games: <span id="gamePoints" style="color:#3813c2;">1,500 pts</span><br>
+            Bonus: <span id="bonusPoints" style="color:#3813c2;">500 pts</span><br>
+            Challenges: <span id="challengePoints" style="color:#3813c2;">150 pts</span>
+          </p>
+          <button class="game-button" id="winGameBtn">Win a Game (+100 XP)</button>
+        </div>
+        <div class="chart-box">
+          <div class="title">🎖️ Badges Earned</div>
+          <div id="badgesList">
+            <!-- Badges will be populated here -->
+          </div>
+        </div>
+      </div>
+      
+      <div class="chart-box">
+        <div class="title">🏆 Weekly Challenges</div>
+        <div class="challenges-grid">
+          <div class="challenge-card">
+            <div class="challenge-title">Play 5 Games</div>
+            <p>Complete any 5 games to earn bonus points</p>
+            <div class="challenge-progress">
+              <div class="challenge-progress-fill" id="challenge1Progress" style="width: 40%"></div>
+            </div>
+            <p><span id="challenge1Status">2</span>/5 completed</p>
+            <div class="challenge-reward">
+              Reward: <span>+200 XP</span>
+            </div>
+          </div>
+          
+          <div class="challenge-card">
+            <div class="challenge-title">Win 3 Times</div>
+            <p>Win any game 3 times this week</p>
+            <div class="challenge-progress">
+              <div class="challenge-progress-fill" id="challenge2Progress" style="width: 66%"></div>
+            </div>
+            <p><span id="challenge2Status">2</span>/3 completed</p>
+            <div class="challenge-reward">
+              Reward: <span>+300 XP</span>
+            </div>
+          </div>
+          
+          <div class="challenge-card">
+            <div class="challenge-title">Daily Login Streak</div>
+            <p>Log in for 7 consecutive days</p>
+            <div class="challenge-progress">
+              <div class="challenge-progress-fill" id="challenge3Progress" style="width: 71%"></div>
+            </div>
+            <p><span id="challenge3Status">5</span>/7 days</p>
+            <div class="challenge-reward">
+              Reward: <span>+500 XP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/script.js"></script>
+</body>
+</html>

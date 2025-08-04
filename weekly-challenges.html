@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Challenges - GameXP</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .weekly-container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .challenges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .challenge-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: 0 4px 12px rgba(255, 111, 216, 0.1);
+    }
+
+    .challenge-card h3 {
+      color: #ffcc00;
+      font-size: 1.3rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .challenge-card .points {
+      font-size: 0.95rem;
+      color: #ffb6ff;
+    }
+
+    .challenge-card .status {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .status.completed {
+      color: #00e676;
+    }
+
+    .status.progress {
+      color: #fdd835;
+    }
+
+    .status.locked {
+      color: #aaa;
+    }
+
+    .footer {
+      text-align: center;
+      color: gold;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-back {
+      background: gold;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 10px;
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      .btn-back {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="btn-back" onclick="history.back()">⬅ Back</button>
+  <div class="weekly-container">
+    <h1 style="color: #ffcc00;">Weekly Challenges</h1>
+
+    <div class="challenges-grid">
+      <div class="challenge-card">
+        <h3>🛒 Shop 3 Times This Week</h3>
+        <div class="points">Earn 150 points</div>
+        <div class="status completed">✅ Completed</div>
+      </div>
+
+      <div class="challenge-card">
+        <h3>🎁 Redeem Any Reward</h3>
+        <div class="points">Earn 100 points</div>
+        <div class="status progress">In Progress</div>
+      </div>
+
+      <div class="challenge-card">
+        <h3>💬 Refer a Friend</h3>
+        <div class="points">Earn 200 points</div>
+        <div class="status locked">Locked</div>
+      </div>
+
+      <div class="challenge-card">
+        <h3>📈 Increase Points by 500</h3>
+        <div class="points">Earn 250 points</div>
+        <div class="status progress">In Progress</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      © GameXP 2025. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - GameXP</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">GameXP 🎯</div>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="games.html">Games</a></li>
+      <li><a href="rewards.html">Rewards</a></li>
+      <li><a href="my-rewards.html">My Rewards</a></li>
+      <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+    </ul>
+    <div class="account">👤 <span id="username">Player</span></div>
+  </nav>
+  
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 20px;">🏆 Leaderboard</h1>
+    
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showLeaderboard('global')">Global</button>
+      <button class="tab-btn" onclick="showLeaderboard('friends')">Friends</button>
+      <button class="tab-btn" onclick="showLeaderboard('weekly')">Weekly</button>
+    </div>
+    
+    <div class="leaderboard">
+      <div class="leaderboard-list" id="globalLeaderboard">
+        <!-- Global leaderboard will be populated here -->
+      </div>
+      <div class="leaderboard-list" id="friendsLeaderboard" style="display: none;">
+        <!-- Friends leaderboard will be populated here -->
+      </div>
+      <div class="leaderboard-list" id="weeklyLeaderboard" style="display: none;">
+        <!-- Weekly leaderboard will be populated here -->
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/script.js"></script>
+</body>
+</html>

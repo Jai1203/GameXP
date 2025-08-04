@@ -1,0 +1,2239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameXP - Ultimate Gaming Platform</title>
+  <style>
+    /* Global Styles */
+    :root {
+      --primary: #e85af6;
+      --secondary: #3813c2;
+      --dark: #1e1039;
+      --light: #f5f5ff;
+      --accent: #ff6b9d;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #291c55, #1e1039);
+      color: white;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: rgba(56, 19, 194, 0.95);
+      box-shadow: 0 2px 12px rgba(255, 111, 216, 0.15);
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      text-shadow: 0 2px 8px #b28dff88;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      transition: background 0.2s, color 0.2s;
+    }
+    
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
+      color: white;
+      box-shadow: 0 2px 8px rgba(255, 111, 216, 0.15);
+    }
+    
+    .account {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    
+    /* Dashboard Styles */
+    .dashboard {
+      padding: 2.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .dashboard h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
+      text-shadow: 0 2px 12px #b28dffaa;
+    }
+    
+    .level-box {
+      background: linear-gradient(90deg, #ffb6ff, #b28dff);
+      color: var(--secondary);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 24px rgba(56, 19, 194, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .level-bar {
+      background: rgba(255, 255, 255, 0.3);
+      height: 22px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0.5rem 0;
+      box-shadow: 0 1px 6px #ff6fd855;
+    }
+    
+    .level-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
+      border-radius: 12px;
+      transition: width 0.5s ease-in-out;
+    }
+    
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .chart-box {
+      background: linear-gradient(120deg, #ffb6ff, #b28dff);
+      color: var(--secondary);
+      padding: 1.8rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 16px rgba(255, 111, 216, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .chart-box .title {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+    
+    .game-button {
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(56, 19, 194, 0.3);
+    }
+    
+    .game-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(56, 19, 194, 0.4);
+    }
+    
+    /* Games Grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .game-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(161, 98, 232, 0.3);
+    }
+    
+    .game-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    
+    .play-btn {
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      border: none;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: transform 0.2s;
+    }
+    
+    .play-btn:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Game Sections */
+    .game-section {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 100;
+      padding: 20px;
+      overflow: auto;
+    }
+    
+    .game-section.active {
+      display: block;
+    }
+    
+    .game-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(41, 28, 85, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      position: relative;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--accent);
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    
+    .close-btn:hover {
+      background: var(--primary);
+    }
+    
+    /* Memory Game Styles */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+    
+    .memory-card {
+      height: 100px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    
+    .memory-card.flipped {
+      transform: rotateY(180deg);
+      background: var(--accent);
+    }
+    
+    .memory-card.matched {
+      visibility: hidden;
+    }
+    
+    /* 2048 Game Styles */
+    #game2048 {
+      width: 450px;
+      height: 450px;
+      background: #bbada0;
+      border-radius: 6px;
+      margin: 20px auto;
+      position: relative;
+    }
+    
+    .grid-cell {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(238, 228, 218, 0.35);
+      border-radius: 3px;
+    }
+    
+    .tile {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      font-size: 55px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 3px;
+      transition: all 0.1s;
+      background: #eee4da;
+      color: #776e65;
+    }
+    
+    /* New Game Styles */
+    .tic-tac-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 300px;
+      margin: 20px auto;
+    }
+    
+    .tic-tac-cell {
+      width: 100px;
+      height: 100px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .tic-tac-cell:hover {
+      background: var(--accent);
+    }
+    
+    .rps-options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .rps-option {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .rps-option:hover {
+      transform: scale(1.1);
+    }
+    
+    .rps-result {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 20px 0;
+      min-height: 60px;
+    }
+    
+    .cricket-field {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      margin: 20px auto;
+      background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+      border-radius: 50%;
+      border: 4px solid #795548;
+      overflow: hidden;
+    }
+    
+    .pitch {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 200px;
+      background: #8B4513;
+      border: 2px solid #5D4037;
+    }
+    
+    .batsman {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      background: #2196F3;
+      border-radius: 50%;
+      z-index: 10;
+    }
+    
+    .bowler {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      background: #FF5722;
+      border-radius: 50%;
+      z-index: 10;
+    }
+    
+    .ball {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: white;
+      border-radius: 50%;
+      z-index: 5;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .cricket-controls {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .wheel-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+    }
+    
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(
+        #FF5722, #FF9800, #FFC107, #4CAF50, 
+        #2196F3, #9C27B0, #E91E63, #FF5722
+      );
+      position: relative;
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+    
+    .wheel-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background: #333;
+      border-radius: 50%;
+      z-index: 10;
+    }
+    
+    .wheel-pointer {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 40px;
+      background: gold;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      z-index: 20;
+    }
+    
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .quiz-question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    
+    .quiz-option {
+      background: var(--primary);
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .quiz-option:hover {
+      background: var(--accent);
+    }
+    
+    .quiz-result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      min-height: 30px;
+    }
+    
+    /* Challenges Section */
+    .challenges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .challenge-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .challenge-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+    
+    .challenge-progress {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    
+    .challenge-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    
+    .challenge-reward {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+    
+    .challenge-reward span {
+      background: var(--success);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+    
+    /* Leaderboard */
+    .leaderboard {
+      max-width: 800px;
+      margin: 20px auto;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+    }
+    
+    .leaderboard-list {
+      margin-top: 20px;
+    }
+    
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .leaderboard-rank {
+      width: 30px;
+      height: 30px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      font-weight: bold;
+    }
+    
+    .leaderboard-name {
+      flex-grow: 1;
+    }
+    
+    .leaderboard-points {
+      font-weight: bold;
+      color: var(--accent);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 900px) {
+      .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .tic-tac-grid {
+        max-width: 250px;
+      }
+      .tic-tac-cell {
+        width: 80px;
+        height: 80px;
+      }
+      .cricket-field {
+        width: 300px;
+        height: 300px;
+      }
+      .rps-options {
+        gap: 10px;
+      }
+      .rps-option {
+        width: 80px;
+        height: 80px;
+        font-size: 30px;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      .charts {
+        grid-template-columns: 1fr;
+      }
+      nav ul {
+        gap: 0.8rem;
+      }
+      .game-container {
+        padding: 15px;
+      }
+      #game2048 {
+        width: 300px;
+        height: 300px;
+      }
+      .grid-cell, .tile {
+        width: 67px;
+        height: 67px;
+        line-height: 67px;
+        font-size: 35px;
+      }
+      .tic-tac-grid {
+        max-width: 200px;
+      }
+      .tic-tac-cell {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+      }
+      .cricket-field {
+        width: 250px;
+        height: 250px;
+      }
+      .rps-options {
+        flex-direction: column;
+        align-items: center;
+      }
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Points Notification */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: fadeInOut 2s ease-in-out;
+      z-index: 1000;
+    }
+    
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(20px); }
+      20% { opacity: 1; transform: translateY(0); }
+      80% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+    
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    
+    .tab-btn.active {
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+    }
+
+    /* Reaction Timer Styles */
+    .reaction-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .reaction-box {
+      width: 300px;
+      height: 200px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    
+    .reaction-box.waiting {
+      background: var(--warning);
+    }
+    
+    .reaction-box.ready {
+      background: var(--success);
+    }
+    
+    .reaction-result {
+      font-size: 1.8rem;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    
+    /* Math Quiz Styles */
+    .math-question {
+      font-size: 2rem;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .math-answer {
+      display: block;
+      width: 200px;
+      margin: 20px auto;
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      border: none;
+      text-align: center;
+    }
+    
+    .math-result {
+      text-align: center;
+      font-size: 1.2rem;
+      min-height: 30px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">GameXP 🎯</div>
+    <ul>
+      <li><a href="#dashboard" class="active">Dashboard</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#rewards">Rewards</a></li>
+      <li><a href="#my-rewards">My Rewards</a></li>
+      <li><a href="#leaderboard">Leaderboard</a></li>
+    </ul>
+    <div class="account">👤 <span id="username">Player</span></div>
+  </nav>
+  
+  <!-- Dashboard Section -->
+  <div id="dashboard" class="container">
+    <div class="dashboard">
+      <h1>Welcome to Your Loyalty Dashboard</h1>
+      
+      <div class="level-box">
+        <h3>🏅 Level <span id="currentLevel">7</span></h3>
+        <p><span id="currentXP">4,000</span> / <span id="nextLevelXP">5,000</span> XP</p>
+        <div class="level-bar">
+          <div id="levelProgress" class="level-fill" style="width: 80%;"></div>
+        </div>
+        <p style="margin-top: 0.5rem;"><span id="percentComplete">80</span>% Complete — <strong><span id="xpToNextLevel">1000</span> XP to Level <span id="nextLevel">8</span></strong></p>
+      </div>
+
+      <div class="charts">
+        <div class="chart-box">
+          <div class="title">📊 Points Overview</div>
+          <p>
+            <strong style="color:#3813c2;">Current Points: <span id="totalPoints">8,250</span></strong><br>
+            Games: <span id="gamePoints" style="color:#3813c2;">1,500 pts</span><br>
+            Bonus: <span id="bonusPoints" style="color:#3813c2;">500 pts</span><br>
+            Challenges: <span id="challengePoints" style="color:#3813c2;">150 pts</span>
+          </p>
+          <button class="game-button" id="winGameBtn">Win a Game (+100 XP)</button>
+        </div>
+        <div class="chart-box">
+          <div class="title">🎖️ Badges Earned</div>
+          <p>
+            <span style="color:#3813c2">Gold Gamer x3</span><br>
+            <span style="color:#3813c2;">Speedster x2</span><br>
+            <span style="color:#3813c2;">Brainiac x1</span><br>
+            <span style="color:#3813c2;">Streak Master x1</span><br>
+            <span style="color:#3813c2;">Quiz Whiz x2</span><br>
+            <span style="color:#3813c2;">Arcade Explorer x1</span><br>
+            <span style="color:#3813c2;">Lucky Spinner x1</span>
+          </p>
+        </div>
+      </div>
+      
+      <div class="chart-box">
+        <div class="title">🏆 Weekly Challenges</div>
+        <div class="challenges-grid">
+          <div class="challenge-card">
+            <div class="challenge-title">Play 5 Games</div>
+            <p>Complete any 5 games to earn bonus points</p>
+            <div class="challenge-progress">
+              <div class="challenge-progress-fill" id="challenge1Progress" style="width: 40%"></div>
+            </div>
+            <p>2/5 completed</p>
+            <div class="challenge-reward">
+              Reward: <span>+200 XP</span>
+            </div>
+          </div>
+          
+          <div class="challenge-card">
+            <div class="challenge-title">Win 3 Times</div>
+            <p>Win any game 3 times this week</p>
+            <div class="challenge-progress">
+              <div class="challenge-progress-fill" id="challenge2Progress" style="width: 66%"></div>
+            </div>
+            <p>2/3 completed</p>
+            <div class="challenge-reward">
+              Reward: <span>+300 XP</span>
+            </div>
+          </div>
+          
+          <div class="challenge-card">
+            <div class="challenge-title">Daily Login Streak</div>
+            <p>Log in for 7 consecutive days</p>
+            <div class="challenge-progress">
+              <div class="challenge-progress-fill" id="challenge3Progress" style="width: 71%"></div>
+            </div>
+            <p>5/7 days</p>
+            <div class="challenge-reward">
+              Reward: <span>+500 XP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Games Section -->
+  <div id="games" class="container" style="display: none;">
+    <div class="header">
+      <h1>Play & Earn</h1>
+      <div class="points-display">Points: <span id="points">0</span></div>
+    </div>
+
+    <div class="games-grid">
+      <div class="game-card" onclick="toggleGame('memory')">
+        <div class>Memory Flip</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          🧠 🃏
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <div class="game-card" onclick="toggleGame('g2048')">
+        <div class>2048</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 50px;">
+          2️⃣ 0️⃣ 4️⃣ 8️⃣
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <div class="game-card" onclick="toggleGame('math')">
+        <div class>Math Quiz</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          ➕ ✖️
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <div class="game-card" onclick="toggleGame('reaction')">
+        <div class>Reaction Timer</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          ⏱️ 💨
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <!-- New Games -->
+      <div class="game-card" onclick="toggleGame('cricket')">
+        <div class>Mini Cricket</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          🏏 🏏
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <div class="game-card" onclick="toggleGame('tictactoe')">
+        <div class>Tic Tac Toe</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          ❌ ⭕
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <div class="game-card" onclick="toggleGame('rps')">
+        <div class>Rock Paper Scissors</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          ✊ ✋ ✌️
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <div class="game-card" onclick="toggleGame('quiz')">
+        <div class>Knowledge Quiz</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          ❓ 🧠
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+      
+      <div class="game-card" onclick="toggleGame('wheel')">
+        <div class>Spin the Wheel</div>
+        <div style="height: 125px; display: flex; justify-content: center; align-items: center; font-size: 60px;">
+          🎡 🎁
+        </div>
+        <button class="play-btn">Play Now</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Rewards Section -->
+  <div id="rewards" class="container" style="display: none;">
+    <h1 style="text-align: center; margin-bottom: 30px;">🎁 Reward Shop</h1>
+    
+    <div class="charts">
+      <div class="chart-box">
+        <div class="title">🛒 Available Rewards</div>
+        <div id="rewards-list">
+          <div class="reward-item" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <h3>$10 Gift Card</h3>
+            <p>🎯 1000 Points</p>
+            <button class="game-button" onclick="redeemReward('$10 Gift Card', 1000)">Redeem</button>
+          </div>
+          <div class="reward-item" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <h3>Premium Game Skin</h3>
+            <p>🎯 500 Points</p>
+            <button class="game-button" onclick="redeemReward('Premium Game Skin', 500)">Redeem</button>
+          </div>
+          <div class="reward-item" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <h3>Exclusive Badge</h3>
+            <p>🎯 300 Points</p>
+            <button class="game-button" onclick="redeemReward('Exclusive Badge', 300)">Redeem</button>
+          </div>
+          <div class="reward-item" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <h3>Double XP Boost</h3>
+            <p>🎯 200 Points</p>
+            <button class="game-button" onclick="redeemReward('Double XP Boost', 200)">Redeem</button>
+          </div>
+          <div class="reward-item" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <h3>GameXP T-Shirt</h3>
+            <p>🎯 2500 Points</p>
+            <button class="game-button" onclick="redeemReward('GameXP T-Shirt', 2500)">Redeem</button>
+          </div>
+          <div class="reward-item" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <h3>Custom Avatar</h3>
+            <p>🎯 1500 Points</p>
+            <button class="game-button" onclick="redeemReward('Custom Avatar', 1500)">Redeem</button>
+          </div>
+          <div class="reward-item">
+            <h3>Gold Membership (1 Month)</h3>
+            <p>🎯 3000 Points</p>
+            <button class="game-button" onclick="redeemReward('Gold Membership (1 Month)', 3000)">Redeem</button>
+          </div>
+        </div>
+      </div>
+      <div class="chart-box">
+        <div class="title">💰 Your Points</div>
+        <p style="font-size: 2rem; text-align: center; margin: 20px 0;">
+          <span id="rewardPoints">0</span> pts
+        </p>
+        <div class="title">📦 Redeemed Rewards</div>
+        <div id="redeemed-rewards" style="margin-top: 20px;">
+          <!-- Redeemed rewards will appear here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- My Rewards Section -->
+  <div id="my-rewards" class="container" style="display: none;">
+    <h1 style="text-align: center; margin-bottom: 30px;">📦 My Rewards</h1>
+    
+    <div class="chart-box">
+      <div class="title">🏆 Your Collected Rewards</div>
+      <ul id="my-rewards-list">
+        <!-- Rewards will be populated here -->
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Leaderboard Section -->
+  <div id="leaderboard" class="container" style="display: none;">
+    <h1 style="text-align: center; margin-bottom: 20px;">🏆 Leaderboard</h1>
+    
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showLeaderboard('global')">Global</button>
+      <button class="tab-btn" onclick="showLeaderboard('friends')">Friends</button>
+      <button class="tab-btn" onclick="showLeaderboard('weekly')">Weekly</button>
+    </div>
+    
+    <div class="leaderboard">
+      <div class="leaderboard-list" id="globalLeaderboard">
+        <!-- Global leaderboard will be populated here -->
+      </div>
+      <div class="leaderboard-list" id="friendsLeaderboard" style="display: none;">
+        <!-- Friends leaderboard will be populated here -->
+      </div>
+      <div class="leaderboard-list" id="weeklyLeaderboard" style="display: none;">
+        <!-- Weekly leaderboard will be populated here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Game Sections -->
+  <div id="memory" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Memory Flip</h2>
+      <p>Find all matching pairs!</p>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <p id="memoryResult" class="game-result"></p>
+    </div>
+  </div>
+
+  <div id="g2048" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>2048</h2>
+      <p>Use arrow keys to move tiles. Join numbers to get to 2048!</p>
+      <div id="game2048"></div>
+      <p id="score2048" style="text-align: center; margin-top: 20px; font-size: 1.2rem;">Score: <span id="currentScore">0</span></p>
+    </div>
+  </div>
+  
+  <!-- Maths Quiz Section -->
+  <div id="math" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Math Quiz</h2>
+      <div class="math-question" id="mathQuestion">5 + 7 = ?</div>
+      <input type="number" class="math-answer" id="mathAnswer" placeholder="Enter your answer">
+      <button class="game-button" id="submitMathBtn">Submit Answer</button>
+      <div class="math-result" id="mathResult"></div>
+      <p style="text-align: center; margin-top: 20px;">Score: <span id="mathScore">0</span></p>
+    </div>
+  </div>
+  
+  <!-- Reaction Timer Section -->
+  <div id="reaction" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Reaction Timer</h2>
+      <div class="reaction-container">
+        <button class="game-button" id="startReactionBtn">Start Test</button>
+        <div class="reaction-box" id="reactionBox">
+          Click Start to begin
+        </div>
+        <div class="reaction-result" id="reactionResult"></div>
+        <p>Best: <span id="bestReaction">0</span> ms</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- New Game Sections -->
+  <div id="cricket" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Mini Cricket</h2>
+      <p>Score as many runs as you can!</p>
+      <div class="cricket-field">
+        <div class="pitch"></div>
+        <div class="batsman"></div>
+        <div class="bowler"></div>
+        <div class="ball" id="cricketBall"></div>
+      </div>
+      <div class="cricket-controls">
+        <p>Runs: <span id="cricketRuns">0</span></p>
+        <button class="game-button" onclick="playCricket()">Bowl!</button>
+        <p id="cricketResult" style="margin-top: 15px;"></p>
+      </div>
+    </div>
+  </div>
+  
+  <div id="tictactoe" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Tic Tac Toe</h2>
+      <p>Player: ❌ | Computer: ⭕</p>
+      <div class="tic-tac-grid" id="ticTacGrid"></div>
+      <p id="ticTacResult" style="text-align: center; margin-top: 20px; font-size: 1.2rem;"></p>
+    </div>
+  </div>
+  
+  <div id="rps" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Rock Paper Scissors</h2>
+      <p>Choose your weapon!</p>
+      <div class="rps-options">
+        <div class="rps-option" onclick="playRPS('rock')">✊</div>
+        <div class="rps-option" onclick="playRPS('paper')">✋</div>
+        <div class="rps-option" onclick="playRPS('scissors')">✌️</div>
+      </div>
+      <div class="rps-result" id="rpsResult"></div>
+      <p>Wins: <span id="rpsWins">0</span> | Losses: <span id="rpsLosses">0</span> | Draws: <span id="rpsDraws">0</span></p>
+    </div>
+  </div>
+  
+  <div id="quiz" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Knowledge Quiz</h2>
+      <div class="quiz-container">
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-result" id="quizResult"></div>
+        <button class="game-button" onclick="nextQuizQuestion()" style="display: none;" id="nextQuizBtn">Next Question</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="wheel" class="game-section">
+    <div class="game-container">
+      <button class="close-btn" onclick="closeGame()">×</button>
+      <h2>Spin the Wheel</h2>
+      <p>Spin to win points!</p>
+      <div class="wheel-container">
+        <div class="wheel-pointer"></div>
+        <div class="wheel" id="spinWheel">
+          <div class="wheel-center"></div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="game-button" onclick="spinWheel()">Spin the Wheel!</button>
+        <p id="wheelResult" style="margin-top: 15px; font-size: 1.2rem;"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global variables
+    let points = localStorage.getItem('gamexp_points') ? parseInt(localStorage.getItem('gamexp_points')) : 8250;
+    let gameActive = true;
+    let redeemedRewards = JSON.parse(localStorage.getItem('redeemedRewards')) || [];
+    let gamesPlayed = localStorage.getItem('gamesPlayed') ? parseInt(localStorage.getItem('gamesPlayed')) : 0;
+    let gamesWon = localStorage.getItem('gamesWon') ? parseInt(localStorage.getItem('gamesWon')) : 0;
+    let loginStreak = localStorage.getItem('loginStreak') ? parseInt(localStorage.getItem('loginStreak')) : 5;
+    let lastLogin = localStorage.getItem('lastLogin') ? new Date(localStorage.getItem('lastLogin')) : null;
+    let bestReaction = localStorage.getItem('bestReaction') ? parseInt(localStorage.getItem('bestReaction')) : 0;
+    let mathScore = 0;
+    let mathQuestions = [];
+    let currentMathQuestion = 0;
+    
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', () => {
+      updatePointsDisplay();
+      updateRewardsDisplay();
+      updateMyRewardsDisplay();
+      initMemoryGame();
+      init2048();
+      initTicTacToe();
+      initQuiz();
+      initMathQuiz();
+      
+      // Navigation
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = this.getAttribute('href').substring(1);
+          showSection(target);
+          
+          if (target === 'leaderboard') {
+            updateLeaderboard();
+          }
+        });
+      });
+      
+      // Win game button
+      document.getElementById('winGameBtn').addEventListener('click', winGame);
+      
+      // Submit math answer
+      document.getElementById('submitMathBtn').addEventListener('click', checkMathAnswer);
+      document.getElementById('mathAnswer').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          checkMathAnswer();
+        }
+      });
+      
+      // Reaction timer
+      document.getElementById('startReactionBtn').addEventListener('click', startReactionTest);
+      document.getElementById('reactionBox').addEventListener('click', reactionBoxClicked);
+      
+      // Check login streak
+      checkLoginStreak();
+    });
+    
+    // Check login streak
+    function checkLoginStreak() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      if (!lastLogin) {
+        // First login
+        loginStreak = 1;
+      } else {
+        const diffDays = Math.floor((today - lastLogin) / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 1) {
+          // Consecutive login
+          loginStreak++;
+        } else if (diffDays > 1) {
+          // Broken streak
+          loginStreak = 1;
+        }
+      }
+      
+      // Save login data
+      localStorage.setItem('loginStreak', loginStreak);
+      localStorage.setItem('lastLogin', today);
+      
+      // Update challenge progress
+      updateChallengeProgress();
+    }
+    
+    // Show specific section
+    function showSection(sectionId) {
+      document.querySelectorAll('.container').forEach(section => {
+        section.style.display = 'none';
+      });
+      
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      document.querySelector(`a[href="#${sectionId}"]`).classList.add('active');
+      document.getElementById(sectionId).style.display = 'block';
+    }
+    
+    // Points system
+    function addPoints(amount) {
+      points += amount;
+      localStorage.setItem('gamexp_points', points);
+      updatePointsDisplay();
+      
+      // Show notification
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = `+${amount} Points!`;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 2000);
+      
+      // Update games played
+      gamesPlayed++;
+      localStorage.setItem('gamesPlayed', gamesPlayed);
+      
+      // Update challenge progress
+      updateChallengeProgress();
+    }
+    
+    function updatePointsDisplay() {
+      // Dashboard points
+      document.getElementById('totalPoints').textContent = points.toLocaleString();
+      
+      // Games page points
+      if (document.getElementById('points')) {
+        document.getElementById('points').textContent = points.toLocaleString();
+      }
+      
+      // Rewards page points
+      if (document.getElementById('rewardPoints')) {
+        document.getElementById('rewardPoints').textContent = points.toLocaleString();
+      }
+      
+      // Update XP progress
+      const xpPercent = Math.min(100, (points % 5000) / 50);
+      document.getElementById('levelProgress').style.width = `${xpPercent}%`;
+      document.getElementById('currentXP').textContent = (points % 5000).toLocaleString();
+      document.getElementById('percentComplete').textContent = Math.floor(xpPercent);
+      document.getElementById('xpToNextLevel').textContent = (5000 - (points % 5000)).toLocaleString();
+    }
+    
+    // Update challenge progress
+    function updateChallengeProgress() {
+      // Challenge 1: Play 5 games
+      const challenge1Progress = Math.min(100, (gamesPlayed / 5) * 100);
+      document.getElementById('challenge1Progress').style.width = `${challenge1Progress}%`;
+      
+      // Challenge 2: Win 3 games
+      const challenge2Progress = Math.min(100, (gamesWon / 3) * 100);
+      document.getElementById('challenge2Progress').style.width = `${challenge2Progress}%`;
+      
+      // Challenge 3: 7-day login streak
+      const challenge3Progress = Math.min(100, (loginStreak / 7) * 100);
+      document.getElementById('challenge3Progress').style.width = `${challenge3Progress}%`;
+    }
+    
+    // Rewards system
+    function redeemReward(rewardName, cost) {
+      if (points >= cost) {
+        points -= cost;
+        localStorage.setItem('gamexp_points', points);
+        
+        redeemedRewards.push(rewardName);
+        localStorage.setItem('redeemedRewards', JSON.stringify(redeemedRewards));
+        
+        updatePointsDisplay();
+        updateRewardsDisplay();
+        updateMyRewardsDisplay();
+        
+        alert(`🎉 Success! You redeemed: ${rewardName}`);
+      } else {
+        alert("You don't have enough points for this reward!");
+      }
+    }
+    
+    function updateRewardsDisplay() {
+      if (document.getElementById('redeemed-rewards')) {
+        const container = document.getElementById('redeemed-rewards');
+        container.innerHTML = '';
+        
+        if (redeemedRewards.length > 0) {
+          redeemedRewards.forEach(reward => {
+            const div = document.createElement('div');
+            div.style.padding = '10px';
+            div.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+            div.textContent = `✅ ${reward}`;
+            container.appendChild(div);
+          });
+        } else {
+          container.innerHTML = '<p>No rewards redeemed yet</p>';
+        }
+      }
+    }
+    
+    function updateMyRewardsDisplay() {
+      if (document.getElementById('my-rewards-list')) {
+        const list = document.getElementById('my-rewards-list');
+        list.innerHTML = '';
+        
+        if (redeemedRewards.length > 0) {
+          redeemedRewards.forEach(reward => {
+            const li = document.createElement('li');
+            li.style.padding = '15px';
+            li.style.margin = '10px 0';
+            li.style.background = 'rgba(255,255,255,0.1)';
+            li.style.borderRadius = '8px';
+            li.style.display = 'flex';
+            li.style.alignItems = 'center';
+            li.innerHTML = `<span style="font-size: 1.5rem; margin-right: 15px;">🎁</span> ${reward}`;
+            list.appendChild(li);
+          });
+        } else {
+          list.innerHTML = '<li style="text-align: center; padding: 20px; color: #aaa;">No rewards collected yet</li>';
+        }
+      }
+    }
+    
+    // Game management
+    function toggleGame(id) {
+      document.querySelectorAll('.game-section').forEach(g => g.classList.remove('active'));
+      if (id) {
+        document.getElementById(id).classList.add('active');
+        document.body.style.overflow = 'hidden';
+        gameActive = true;
+        
+        // Initialize specific games when opened
+        if (id === 'memory') initMemoryGame();
+        if (id === 'g2048') init2048();
+        if (id === 'tictactoe') initTicTacToe();
+        if (id === 'quiz') initQuiz();
+        if (id === 'math') initMathQuiz();
+      }
+    }
+    
+    function closeGame() {
+      toggleGame(null);
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Win game function for dashboard
+    function winGame() {
+      addPoints(100);
+      gamesWon++;
+      localStorage.setItem('gamesWon', gamesWon);
+      updateChallengeProgress();
+    }
+    
+    // Memory Flip Game
+    function initMemoryGame() {
+      const memoryGrid = document.getElementById('memoryGrid');
+      memoryGrid.innerHTML = '';
+      
+      const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
+      const cards = [...emojis, ...emojis];
+      
+      // Shuffle cards
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      
+      let flippedCards = [];
+      let matchedPairs = 0;
+      
+      cards.forEach((emoji, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.dataset.index = index;
+        card.dataset.value = emoji;
+        card.innerHTML = '<span style="visibility: hidden;">' + emoji + '</span>';
+        
+        card.addEventListener('click', () => {
+          if (!gameActive || flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+          
+          card.classList.add('flipped');
+          card.querySelector('span').style.visibility = 'visible';
+          flippedCards.push(card);
+          
+          if (flippedCards.length === 2) {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.value === card2.dataset.value) {
+              // Match found
+              card1.classList.add('matched');
+              card2.classList.add('matched');
+              flippedCards = [];
+              matchedPairs++;
+              
+              if (matchedPairs === emojis.length) {
+                document.getElementById('memoryResult').innerText = 'You Win! +40 points';
+                addPoints(40);
+                gamesWon++;
+                localStorage.setItem('gamesWon', gamesWon);
+                gameActive = false;
+              }
+            } else {
+              // No match
+              setTimeout(() => {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                card1.querySelector('span').style.visibility = 'hidden';
+                card2.querySelector('span').style.visibility = 'hidden';
+                flippedCards = [];
+              }, 1000);
+            }
+          }
+        });
+        
+        memoryGrid.appendChild(card);
+      });
+    }
+    
+    // 2048 Game
+    function init2048() {
+      const gameContainer = document.getElementById('game2048');
+      gameContainer.innerHTML = '';
+      
+      // Create grid
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+          const cell = document.createElement('div');
+          cell.className = 'grid-cell';
+          cell.style.top = (i * 110 + 10) + 'px';
+          cell.style.left = (j * 110 + 10) + 'px';
+          gameContainer.appendChild(cell);
+        }
+      }
+      
+      let grid = Array(4).fill().map(() => Array(4).fill(0));
+      let score = 0;
+      
+      // Add initial tiles
+      addRandomTile();
+      addRandomTile();
+      updateView();
+      
+      // Handle keyboard input
+      document.addEventListener('keydown', function(e) {
+        if (!gameActive) return;
+        
+        let moved = false;
+        
+        switch(e.key) {
+          case 'ArrowUp':
+            moved = moveUp();
+            break;
+          case 'ArrowDown':
+            moved = moveDown();
+            break;
+          case 'ArrowLeft':
+            moved = moveLeft();
+            break;
+          case 'ArrowRight':
+            moved = moveRight();
+            break;
+          default:
+            return;
+        }
+        
+        if (moved) {
+          addRandomTile();
+          updateView();
+          
+          if (isGameOver()) {
+            addPoints(score);
+            gamesWon++;
+            localStorage.setItem('gamesWon', gamesWon);
+            alert(`Game Over! Your score: ${score} (+${score} points)`);
+            gameActive = false;
+          }
+        }
+      });
+      
+      function moveUp() {
+        let moved = false;
+        
+        for (let j = 0; j < 4; j++) {
+          for (let i = 1; i < 4; i++) {
+            if (grid[i][j] !== 0) {
+              let k = i;
+              while (k > 0 && grid[k-1][j] === 0) {
+                grid[k-1][j] = grid[k][j];
+                grid[k][j] = 0;
+                k--;
+                moved = true;
+              }
+              
+              if (k > 0 && grid[k-1][j] === grid[k][j]) {
+                grid[k-1][j] *= 2;
+                score += grid[k-1][j];
+                grid[k][j] = 0;
+                moved = true;
+              }
+            }
+          }
+        }
+        
+        return moved;
+      }
+      
+      function moveDown() {
+        let moved = false;
+        
+        for (let j = 0; j < 4; j++) {
+          for (let i = 2; i >= 0; i--) {
+            if (grid[i][j] !== 0) {
+              let k = i;
+              while (k < 3 && grid[k+1][j] === 0) {
+                grid[k+1][j] = grid[k][j];
+                grid[k][j] = 0;
+                k++;
+                moved = true;
+              }
+              
+              if (k < 3 && grid[k+1][j] === grid[k][j]) {
+                grid[k+1][j] *= 2;
+                score += grid[k+1][j];
+                grid[k][j] = 0;
+                moved = true;
+              }
+            }
+          }
+        }
+        
+        return moved;
+      }
+      
+      function moveLeft() {
+        let moved = false;
+        
+        for (let i = 0; i < 4; i++) {
+          for (let j = 1; j < 4; j++) {
+            if (grid[i][j] !== 0) {
+              let k = j;
+              while (k > 0 && grid[i][k-1] === 0) {
+                grid[i][k-1] = grid[i][k];
+                grid[i][k] = 0;
+                k--;
+                moved = true;
+              }
+              
+              if (k > 0 && grid[i][k-1] === grid[i][k]) {
+                grid[i][k-1] *= 2;
+                score += grid[i][k-1];
+                grid[i][k] = 0;
+                moved = true;
+              }
+            }
+          }
+        }
+        
+        return moved;
+      }
+      
+      function moveRight() {
+        let moved = false;
+        
+        for (let i = 0; i < 4; i++) {
+          for (let j = 2; j >= 0; j--) {
+            if (grid[i][j] !== 0) {
+              let k = j;
+              while (k < 3 && grid[i][k+1] === 0) {
+                grid[i][k+1] = grid[i][k];
+                grid[i][k] = 0;
+                k++;
+                moved = true;
+              }
+              
+              if (k < 3 && grid[i][k+1] === grid[i][k]) {
+                grid[i][k+1] *= 2;
+                score += grid[i][k+1];
+                grid[i][k] = 0;
+                moved = true;
+              }
+            }
+          }
+        }
+        
+        return moved;
+      }
+      
+      function addRandomTile() {
+        const emptyCells = [];
+        
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            if (grid[i][j] === 0) {
+              emptyCells.push({i, j});
+            }
+          }
+        }
+        
+        if (emptyCells.length > 0) {
+          const {i, j} = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+          grid[i][j] = Math.random() < 0.9 ? 2 : 4;
+        }
+      }
+      
+      function updateView() {
+        // Remove all tiles
+        const tiles = document.querySelectorAll('.tile');
+        tiles.forEach(tile => tile.remove());
+        
+        // Update score display
+        document.getElementById('currentScore').textContent = score;
+        
+        // Add current tiles
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            if (grid[i][j] !== 0) {
+              const tile = document.createElement('div');
+              tile.className = 'tile';
+              tile.textContent = grid[i][j];
+              tile.style.top = (i * 110 + 10) + 'px';
+              tile.style.left = (j * 110 + 10) + 'px';
+              
+              // Set background color based on value
+              const value = grid[i][j];
+              const bgColor = `hsl(${Math.log2(value) * 30}, 80%, ${80 - Math.log2(value) * 5}%)`;
+              tile.style.background = bgColor;
+              
+              if (value > 4) {
+                tile.style.color = '#f9f6f2';
+              }
+              
+              gameContainer.appendChild(tile);
+            }
+          }
+        }
+      }
+      
+      function isGameOver() {
+        // Check if there are empty cells
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            if (grid[i][j] === 0) return false;
+          }
+        }
+        
+        // Check if there are possible merges
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            if ((j < 3 && grid[i][j] === grid[i][j+1]) || 
+                (i < 3 && grid[i][j] === grid[i+1][j])) {
+              return false;
+            }
+          }
+        }
+        
+        return true;
+      }
+    }
+    
+    // Mini Cricket Game
+    function playCricket() {
+      if (!gameActive) return;
+      
+      const ball = document.getElementById('cricketBall');
+      const runsDisplay = document.getElementById('cricketRuns');
+      const resultDisplay = document.getElementById('cricketResult');
+      
+      // Animate the ball
+      ball.style.transition = 'all 0.8s ease-in-out';
+      ball.style.top = '60%';
+      
+      setTimeout(() => {
+        // Random outcome
+        const outcomes = [0, 1, 2, 4, 6, 'out'];
+        const outcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+        
+        if (outcome === 'out') {
+          resultDisplay.textContent = 'OUT! Game Over.';
+          resultDisplay.style.color = '#f44336';
+          addPoints(parseInt(runsDisplay.textContent));
+          gamesWon++;
+          localStorage.setItem('gamesWon', gamesWon);
+          gameActive = false;
+        } else {
+          resultDisplay.textContent = `You scored ${outcome} runs!`;
+          resultDisplay.style.color = '#4caf50';
+          runsDisplay.textContent = parseInt(runsDisplay.textContent) + outcome;
+          
+          // Reset ball position
+          setTimeout(() => {
+            ball.style.transition = 'none';
+            ball.style.top = '40%';
+            resultDisplay.textContent = '';
+          }, 1500);
+        }
+      }, 800);
+    }
+    
+    // Tic Tac Toe Game
+    function initTicTacToe() {
+      const grid = document.getElementById('ticTacGrid');
+      grid.innerHTML = '';
+      
+      let board = ['', '', '', '', '', '', '', '', ''];
+      let currentPlayer = 'X';
+      gameActive = true;
+      document.getElementById('ticTacResult').textContent = '';
+      
+      for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'tic-tac-cell';
+        cell.dataset.index = i;
+        cell.addEventListener('click', () => makeMove(cell, i));
+        grid.appendChild(cell);
+      }
+    }
+    
+    function makeMove(cell, index) {
+      if (!gameActive || cell.textContent !== '') return;
+      
+      cell.textContent = '❌';
+      cell.style.pointerEvents = 'none';
+      
+      // Check for win or draw
+      if (checkWin('❌')) {
+        document.getElementById('ticTacResult').textContent = 'You win! +50 points';
+        addPoints(50);
+        gamesWon++;
+        localStorage.setItem('gamesWon', gamesWon);
+        gameActive = false;
+        return;
+      }
+      
+      if (isBoardFull()) {
+        document.getElementById('ticTacResult').textContent = "It's a draw! +10 points";
+        addPoints(10);
+        gameActive = false;
+        return;
+      }
+      
+      // Computer's move
+      setTimeout(() => {
+        const emptyCells = [...document.querySelectorAll('.tic-tac-cell')].filter(cell => cell.textContent === '');
+        if (emptyCells.length > 0) {
+          const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+          randomCell.textContent = '⭕';
+          randomCell.style.pointerEvents = 'none';
+          
+          if (checkWin('⭕')) {
+            document.getElementById('ticTacResult').textContent = 'Computer wins!';
+            gameActive = false;
+          } else if (isBoardFull()) {
+            document.getElementById('ticTacResult').textContent = "It's a draw! +10 points";
+            addPoints(10);
+            gameActive = false;
+          }
+        }
+      }, 500);
+    }
+    
+    function checkWin(player) {
+      const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+        [0, 4, 8], [2, 4, 6]             // diagonals
+      ];
+      
+      const cells = document.querySelectorAll('.tic-tac-cell');
+      return winPatterns.some(pattern => {
+        return pattern.every(index => cells[index].textContent === player);
+      });
+    }
+    
+    function isBoardFull() {
+      const cells = document.querySelectorAll('.tic-tac-cell');
+      return [...cells].every(cell => cell.textContent !== '');
+    }
+    
+    // Rock Paper Scissors Game
+    function playRPS(choice) {
+      if (!gameActive) return;
+      
+      const choices = ['rock', 'paper', 'scissors'];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+      const resultDisplay = document.getElementById('rpsResult');
+      
+      resultDisplay.innerHTML = `You chose: ${getEmoji(choice)} | Computer chose: ${getEmoji(computerChoice)}`;
+      
+      if (choice === computerChoice) {
+        resultDisplay.innerHTML += '<br>It\'s a draw!';
+        document.getElementById('rpsDraws').textContent = parseInt(document.getElementById('rpsDraws').textContent) + 1;
+      } else if (
+        (choice === 'rock' && computerChoice === 'scissors') ||
+        (choice === 'paper' && computerChoice === 'rock') ||
+        (choice === 'scissors' && computerChoice === 'paper')
+      ) {
+        resultDisplay.innerHTML += '<br>You win! +20 points';
+        addPoints(20);
+        gamesWon++;
+        localStorage.setItem('gamesWon', gamesWon);
+        document.getElementById('rpsWins').textContent = parseInt(document.getElementById('rpsWins').textContent) + 1;
+      } else {
+        resultDisplay.innerHTML += '<br>Computer wins!';
+        document.getElementById('rpsLosses').textContent = parseInt(document.getElementById('rpsLosses').textContent) + 1;
+      }
+    }
+    
+    function getEmoji(choice) {
+      switch(choice) {
+        case 'rock': return '✊';
+        case 'paper': return '✋';
+        case 'scissors': return '✌️';
+      }
+    }
+    
+    // Knowledge Quiz Game
+    function initQuiz() {
+      quizQuestions = [
+        {
+          question: "What is the capital of France?",
+          options: ["London", "Berlin", "Paris", "Madrid"],
+          answer: 2
+        },
+        {
+          question: "Which planet is known as the Red Planet?",
+          options: ["Venus", "Mars", "Jupiter", "Saturn"],
+          answer: 1
+        },
+        {
+          question: "What is the largest ocean on Earth?",
+          options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+          answer: 3
+        },
+        {
+          question: "Who painted the Mona Lisa?",
+          options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+          answer: 2
+        },
+        {
+          question: "What is the chemical symbol for gold?",
+          options: ["Go", "Gd", "Au", "Ag"],
+          answer: 2
+        }
+      ];
+      
+      currentQuestion = 0;
+      score = 0;
+      showQuizQuestion();
+    }
+    
+    function showQuizQuestion() {
+      const question = quizQuestions[currentQuestion];
+      document.getElementById('quizQuestion').textContent = question.question;
+      
+      const optionsContainer = document.getElementById('quizOptions');
+      optionsContainer.innerHTML = '';
+      
+      question.options.forEach((option, index) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'quiz-option';
+        optionElement.textContent = option;
+        optionElement.onclick = () => checkAnswer(index);
+        optionsContainer.appendChild(optionElement);
+      });
+      
+      document.getElementById('quizResult').textContent = '';
+      document.getElementById('nextQuizBtn').style.display = 'none';
+    }
+    
+    function checkAnswer(selectedIndex) {
+      const question = quizQuestions[currentQuestion];
+      const options = document.querySelectorAll('.quiz-option');
+      
+      if (selectedIndex === question.answer) {
+        options[selectedIndex].style.background = '#4CAF50';
+        document.getElementById('quizResult').textContent = 'Correct! +10 points';
+        score += 10;
+      } else {
+        options[selectedIndex].style.background = '#f44336';
+        options[question.answer].style.background = '#4CAF50';
+        document.getElementById('quizResult').textContent = 'Wrong! The correct answer is: ' + question.options[question.answer];
+      }
+      
+      // Disable options
+      options.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+      
+      document.getElementById('nextQuizBtn').style.display = 'block';
+    }
+    
+    function nextQuizQuestion() {
+      currentQuestion++;
+      if (currentQuestion < quizQuestions.length) {
+        showQuizQuestion();
+      } else {
+        // Quiz completed
+        addPoints(score);
+        gamesWon++;
+        localStorage.setItem('gamesWon', gamesWon);
+        document.getElementById('quizResult').textContent = `Quiz completed! Your score: ${score}/50 points`;
+        document.getElementById('nextQuizBtn').style.display = 'none';
+        gameActive = false;
+      }
+    }
+    
+    // Spin the Wheel Game
+    function spinWheel() {
+      if (!gameActive) return;
+      
+      const wheel = document.getElementById('spinWheel');
+      const resultDisplay = document.getElementById('wheelResult');
+      const spinDegrees = 1080 + Math.floor(Math.random() * 360); // At least 3 full rotations
+      
+      wheel.style.transform = `rotate(${spinDegrees}deg)`;
+      gameActive = false;
+      
+      setTimeout(() => {
+        // Determine prize based on final rotation
+        const normalizedRotation = spinDegrees % 360;
+        let prize = 0;
+        
+        if (normalizedRotation < 45) prize = 100;
+        else if (normalizedRotation < 90) prize = 200;
+        else if (normalizedRotation < 135) prize = 50;
+        else if (normalizedRotation < 180) prize = 300;
+        else if (normalizedRotation < 225) prize = 150;
+        else if (normalizedRotation < 270) prize = 250;
+        else if (normalizedRotation < 315) prize = 75;
+        else prize = 400;
+        
+        resultDisplay.textContent = `You won ${prize} points!`;
+        addPoints(prize);
+        gamesWon++;
+        localStorage.setItem('gamesWon', gamesWon);
+      }, 4000);
+    }
+    
+    // Math Quiz Game
+    function initMathQuiz() {
+      mathScore = 0;
+      currentMathQuestion = 0;
+      document.getElementById('mathScore').textContent = mathScore;
+      document.getElementById('mathResult').textContent = '';
+      document.getElementById('mathAnswer').value = '';
+      generateMathQuestion();
+    }
+    
+    function generateMathQuestion() {
+      const operations = ['+', '-', '*'];
+      const op = operations[Math.floor(Math.random() * operations.length)];
+      let num1, num2, answer;
+      
+      switch(op) {
+        case '+':
+          num1 = Math.floor(Math.random() * 50) + 1;
+          num2 = Math.floor(Math.random() * 50) + 1;
+          answer = num1 + num2;
+          break;
+        case '-':
+          num1 = Math.floor(Math.random() * 50) + 1;
+          num2 = Math.floor(Math.random() * num1) + 1;
+          answer = num1 - num2;
+          break;
+        case '*':
+          num1 = Math.floor(Math.random() * 12) + 1;
+          num2 = Math.floor(Math.random() * 12) + 1;
+          answer = num1 * num2;
+          break;
+      }
+      
+      document.getElementById('mathQuestion').textContent = `${num1} ${op} ${num2} = ?`;
+      document.getElementById('mathAnswer').dataset.answer = answer;
+      document.getElementById('mathAnswer').value = '';
+      document.getElementById('mathResult').textContent = '';
+      document.getElementById('mathAnswer').focus();
+    }
+    
+    function checkMathAnswer() {
+      if (!gameActive) return;
+      
+      const answerInput = document.getElementById('mathAnswer');
+      const userAnswer = parseInt(answerInput.value);
+      const correctAnswer = parseInt(answerInput.dataset.answer);
+      const resultDisplay = document.getElementById('mathResult');
+      
+      if (isNaN(userAnswer)) {
+        resultDisplay.textContent = 'Please enter a valid number';
+        return;
+      }
+      
+      if (userAnswer === correctAnswer) {
+        resultDisplay.textContent = 'Correct! +10 points';
+        resultDisplay.style.color = '#4CAF50';
+        mathScore += 10;
+        document.getElementById('mathScore').textContent = mathScore;
+      } else {
+        resultDisplay.textContent = `Wrong! The correct answer is ${correctAnswer}`;
+        resultDisplay.style.color = '#f44336';
+      }
+      
+      currentMathQuestion++;
+      
+      if (currentMathQuestion < 5) {
+        setTimeout(generateMathQuestion, 1500);
+      } else {
+        setTimeout(() => {
+          resultDisplay.textContent = `Quiz completed! Your score: ${mathScore} points`;
+          addPoints(mathScore);
+          gamesWon++;
+          localStorage.setItem('gamesWon', gamesWon);
+          gameActive = false;
+        }, 1500);
+      }
+    }
+    
+    // Reaction Timer Game
+    function startReactionTest() {
+      if (!gameActive) return;
+      
+      const reactionBox = document.getElementById('reactionBox');
+      const startBtn = document.getElementById('startReactionBtn');
+      const resultDisplay = document.getElementById('reactionResult');
+      
+      startBtn.style.display = 'none';
+      reactionBox.textContent = 'Wait...';
+      reactionBox.className = 'reaction-box waiting';
+      resultDisplay.textContent = '';
+      
+      // Random delay between 2 and 5 seconds
+      const delay = 2000 + Math.floor(Math.random() * 3000);
+      
+      setTimeout(() => {
+        reactionBox.textContent = 'CLICK NOW!';
+        reactionBox.className = 'reaction-box ready';
+        startTime = new Date();
+      }, delay);
+    }
+    
+    function reactionBoxClicked() {
+      if (!gameActive || !startTime) return;
+      
+      const reactionBox = document.getElementById('reactionBox');
+      const resultDisplay = document.getElementById('reactionResult');
+      const startBtn = document.getElementById('startReactionBtn');
+      
+      if (reactionBox.className.includes('ready')) {
+        const endTime = new Date();
+        const reactionTime = endTime - startTime;
+        
+        resultDisplay.textContent = `${reactionTime} ms`;
+        
+        // Award points based on reaction time
+        let pointsEarned = Math.max(10, 100 - Math.floor(reactionTime / 10));
+        addPoints(pointsEarned);
+        
+        // Update best reaction time
+        if (reactionTime < bestReaction || bestReaction === 0) {
+          bestReaction = reactionTime;
+          localStorage.setItem('bestReaction', bestReaction);
+          document.getElementById('bestReaction').textContent = bestReaction;
+        }
+        
+        // Reset for next try
+        reactionBox.textContent = 'Click Start to play again';
+        reactionBox.className = 'reaction-box';
+        startBtn.style.display = 'block';
+        startTime = null;
+      }
+    }
+    
+    // Leaderboard
+    function updateLeaderboard() {
+      const leaderboardData = [
+        { name: "Player", points: points },
+        { name: "GameMaster", points: 12500 },
+        { name: "ProGamer", points: 11000 },
+        { name: "ArcadeKing", points: 9800 },
+        { name: "LuckyWinner", points: 8700 },
+        { name: "QuizWhiz", points: 7500 },
+        { name: "SpeedRunner", points: 6400 },
+        { name: "NewPlayer", points: 3200 }
+      ];
+      
+      // Sort by points
+      leaderboardData.sort((a, b) => b.points - a.points);
+      
+      // Populate leaderboards
+      populateLeaderboard('globalLeaderboard', leaderboardData);
+      populateLeaderboard('weeklyLeaderboard', leaderboardData.map(p => ({...p, points: Math.floor(p.points * 0.7)})));
+      
+      // Friends leaderboard (just top 3 from global)
+      populateLeaderboard('friendsLeaderboard', leaderboardData.slice(0, 3));
+    }
+    
+    function populateLeaderboard(elementId, data) {
+      const container = document.getElementById(elementId);
+      container.innerHTML = '';
+      
+      data.forEach((player, index) => {
+        const item = document.createElement('div');
+        item.className = 'leaderboard-item';
+        
+        item.innerHTML = `
+          <div class="leaderboard-rank">${index + 1}</div>
+          <div class="leaderboard-name">${player.name}</div>
+          <div class="leaderboard-points">${player.points.toLocaleString()} pts</div>
+        `;
+        
+        // Highlight current player
+        if (player.name === "Player") {
+          item.style.background = 'rgba(232, 90, 246, 0.2)';
+        }
+        
+        container.appendChild(item);
+      });
+    }
+    
+    function showLeaderboard(type) {
+      document.querySelectorAll('.leaderboard-list').forEach(el => {
+        el.style.display = 'none';
+      });
+      
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      document.querySelector(`.tab-btn[onclick="showLeaderboard('${type}')"]`).classList.add('active');
+      document.getElementById(`${type}Leaderboard`).style.display = 'block';
+    }
+  </script>
+</body>
+</html>

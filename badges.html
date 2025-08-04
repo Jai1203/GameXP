@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Badges</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="container">
+  <h1>🏅 My Badges</h1>
+  <ul id="badgeList"></ul>
+  <script>
+    fetch('/badges')
+      .then(res => res.json())
+      .then(data => {
+        const ul = document.getElementById('badgeList');
+        data.badges.forEach(b => ul.innerHTML += `<li>${b}</li>`);
+      });
+  </script>
+</body>
+</html>

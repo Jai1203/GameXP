@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ways to Earn Points - GameXP</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #291c55;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(255, 111, 216, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .modal, .weekly-challenges {
+      display: none;
+      background: #1c1433;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: 2rem auto;
+      color: white;
+      border: 1px solid #ff6fd8;
+    }
+
+    .points {
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #ffb6ff;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background: gold;
+      color: black;
+      font-weight: bold;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="btn">⬅ Back to Dashboard</a>
+  <h1 style="text-align: center; color: #ffb6ff;">Ways to Earn Points</h1>
+
+  <div class="grid">
+    <div class="card" onclick="toggleWeeklyChallenges()">
+      <h3>🎯 Complete a Weekly Challenge</h3>
+      <p>Finish 3 purchases this week to earn bonus points.</p>
+      <div class="points">+50 Points</div>
+    </div>
+
+    <div class="card highlight" onclick="toggleWeeklyChallenges()">
+      <h3>🔥 Weekly Challenges</h3>
+      <p>Complete tasks every week and earn bonus points.</p>
+    </div>
+
+    <div class="card" onclick="openReferral()">
+      <h3>👜 Refer a Friend</h3>
+      <p>Get rewarded when your friends sign up and shop.</p>
+      <div class="points">+100 Points</div>
+    </div>
+
+    <div class="card highlight" onclick="window.location.href='game.html'">
+      <h3>🎮 Play & Earn</h3>
+      <p>Play games, win points, and unlock exclusive badges!</p>
+    </div>
+
+    <div class="card" onclick="openReviewModal()">
+      <h3>📝 Write a Review</h3>
+      <p>Review purchased items to earn points and help others.</p>
+      <div class="points">+15 Points</div>
+    </div>
+
+    <div class="card" onclick="openReturnModal()">
+      <h3>📦 Return Empty Packaging</h3>
+      <p>Earn green points by returning recyclables to the store.</p>
+      <div class="points">+25 Points</div>
+    </div>
+  </div>
+
+  <!-- Weekly Challenges Panel -->
+  <div class="weekly-challenges" id="weeklySection">
+    <h2>🔥 This Week’s Challenges</h2>
+    <ul>
+      <li>🛒 Shop 3 Times — +150 pts</li>
+      <li>🎁 Redeem Any Reward — +100 pts</li>
+      <li>📈 Increase Points by 500 — +250 pts</li>
+      <li>💬 Refer a Friend — +200 pts</li>
+    </ul>
+  </div>
+
+  <!-- Refer a Friend Modal -->
+  <div class="modal" id="referralModal">
+    <h2>👥 Refer a Friend</h2>
+    <input type="text" placeholder="Friend's email..." />
+    <button onclick="submitReferral()">Send Invite</button>
+  </div>
+
+  <!-- Write a Review Modal -->
+  <div class="modal" id="reviewModal">
+    <h2>📝 Write a Review</h2>
+    <textarea placeholder="Write your feedback..."></textarea>
+    <button onclick="submitReview()">Submit</button>
+  </div>
+
+  <!-- Return Packaging Modal -->
+  <div class="modal" id="returnModal">
+    <h2>♻️ Return Empty Packaging</h2>
+    <p>Confirm you’ve returned empty packaging at your nearest store.</p>
+    <button onclick="confirmReturn()">Confirm Return</button>
+  </div>
+
+  <script>
+    function toggleWeeklyChallenges() {
+      document.getElementById("weeklySection").style.display = "block";
+    }
+
+    function openReferral() {
+      document.getElementById("referralModal").style.display = "block";
+    }
+
+    function openReviewModal() {
+      document.getElementById("reviewModal").style.display = "block";
+    }
+
+    function openReturnModal() {
+      document.getElementById("returnModal").style.display = "block";
+    }
+
+    function submitReferral() {
+      alert("Referral sent! +100 points");
+      document.getElementById("referralModal").style.display = "none";
+    }
+
+    function submitReview() {
+      alert("Thank you for your review! +15 points");
+      document.getElementById("reviewModal").style.display = "none";
+    }
+
+    function confirmReturn() {
+      alert("Return confirmed! +25 green points awarded.");
+      document.getElementById("returnModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
