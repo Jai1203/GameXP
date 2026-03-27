@@ -125,7 +125,7 @@ GameXP/
 
 **Jai Chadha**
 GitHub: https://github.com/Jai1203
-LinkedIn: (Add your LinkedIn profile here)
+LinkedIn: https://www.linkedin.com/in/jai-chadha-870407273/
 
 ---
 
